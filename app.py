@@ -7,9 +7,9 @@ from nltk.corpus import stopwords
 from nltk.stem import PorterStemmer, WordNetLemmatizer
 
 # Download necessary NLTK data
-nltk.download('stopwords')
-nltk.download('punkt')
-nltk.download('wordnet')
+nltk.download('stopwords', quiet=True)
+nltk.download('punkt', quiet=True)
+nltk.download('wordnet', quiet=True)
 
 app = Flask(__name__)
 
