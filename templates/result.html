@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spam Detector</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: url("/static/img/bg22.jpg");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+        }
+        .h2 {
+    color: #02074b; /* Replace with your desired color code */
+}
+
+        .container {
+            max-width: 600px;
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 28px;
+            color: #333333;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 18px;
+            color: #555555;
+            margin: 10px 0;
+        }
+
+        .result-image {
+            width: 70%;
+            max-width: 400px;
+            height: auto;
+            margin-top: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .container h1:first-of-type {
+            margin-top: 0;
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            font-size: 16px;
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                width: 90%;
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            p {
+                font-size: 16px;
+            }
+
+            .result-image {
+                max-width: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Spam Detector</h1>
+        <h2 ><strong>{{ result }}</strong></h2>
+
+        {% if result == 'Spam' %}
+            <img src="{{ url_for('static', filename='img/spam.jpg') }}" alt="Spam Image" class="result-image" width="200">
+        {% elif result == 'Ham' %}
+            <img src="{{ url_for('static', filename='img/ham.png') }}" alt="Ham Image" class="result-image" width="800">
+        {% endif %}
+        
+        <h2><a href="/predict">Check Another</a></h2>
+        <h2><a href="/">Home</a></h2>
+    </div>
+</body>
+</html>
