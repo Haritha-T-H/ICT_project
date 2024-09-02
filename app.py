@@ -40,15 +40,18 @@ def predict():
 
 @app.route('/result', methods=['POST'])
 def result():
-    if request.method == 'POST':
-        message = request.form['message']
-        processed_message = preprocess_text(message)
-        message_tfidf = vectorizer.transform([processed_message])
-        prediction = model.predict(message_tfidf)
+    try:
+        if request.method == 'POST':
+            message = request.form['message']
+            if not message.strip():
+                return render_template('error.html', error='Empty input! Please provide a valid message.')
 
-        result = 'Spam' if prediction[0] == 1 else 'Ham'
+            processed_message = preprocess_text(message)
+            message_tfidf = vectorizer.transform([processed_message])
+            prediction = model.predict(message_tfidf)
+            result = 'Spam' if prediction[0] == 1 else 'Ham'
 
-        return render_template('result.html', message=message, result=result)
+            return render_template('result.html', message=message, result=result)
+    except Exception as e:
+        return render_template('error.html', error=str(e))
 
-if __name__ == '__main__':
-    app.run(debug=True)
