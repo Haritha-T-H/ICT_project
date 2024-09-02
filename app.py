@@ -53,5 +53,5 @@ def result():
 
             return render_template('result.html', message=message, result=result)
     except Exception as e:
-        return render_template('error.html', error=str(e))
+        return render_template('predict.html', error=str(e))
 
